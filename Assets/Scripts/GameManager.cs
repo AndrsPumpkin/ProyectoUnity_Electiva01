@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
         case 1:
             Rotate(currentDirection);
             break;
+         case 2:
+            Scale(currentDirection);
+            break;
     }
 }
 
@@ -50,6 +53,10 @@ public void TranslateLeft()  => StartAction(0, 4);
 public void RotateRight() => StartAction(1, 2);
 public void RotateLeft()  => StartAction(1, 1);
 
+// Escala
+public void ScaleUp()   => StartAction(2, 1);
+public void ScaleDown() => StartAction(2, 2);
+
 
 public void Translate(int direction)
 {
@@ -72,6 +79,14 @@ public void Rotate(int direction)
     objeto3D.transform.Rotate(
         Vector3.up * rotation * Time.deltaTime * 50f,
         Space.World);
+}
+
+public void Scale(int direction)
+{
+    float scale = direction == 1 ? 1f : -1f;
+
+    objeto3D.transform.localScale +=
+        Vector3.one * scale * Time.deltaTime* 10f;
 }
 
 }
