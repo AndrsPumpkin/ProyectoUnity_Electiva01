@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
         case 0:
             Translate(currentDirection);
             break;
+        case 1:
+            Rotate(currentDirection);
+            break;
     }
 }
 
@@ -43,6 +46,9 @@ public void TranslateRight() => StartAction(0, 2);
 public void TranslateDown()  => StartAction(0, 3);
 public void TranslateLeft()  => StartAction(0, 4);
 
+// Rotación
+public void RotateRight() => StartAction(1, 2);
+public void RotateLeft()  => StartAction(1, 1);
 
 
 public void Translate(int direction)
@@ -56,7 +62,16 @@ public void Translate(int direction)
         _ => Vector3.zero
     };
 
-    objeto3D.transform.Translate(movement * Time.deltaTime * 10f, Space.World);
+    objeto3D.transform.Translate(movement * Time.deltaTime * 50f, Space.World);
+}
+
+public void Rotate(int direction)
+{
+    float rotation = direction == 1 ? 1f : -1f;
+
+    objeto3D.transform.Rotate(
+        Vector3.up * rotation * Time.deltaTime * 50f,
+        Space.World);
 }
 
 }
