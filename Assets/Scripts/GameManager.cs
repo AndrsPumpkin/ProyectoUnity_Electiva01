@@ -4,6 +4,9 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public GameObject objeto3D;
+    [Header("Audio")]
+    public AudioClip sonido;
+
     private int currentAction = 0;
     private int currentDirection = 0;
     private bool isActive = false;
@@ -11,6 +14,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public void PlaySound()
+    {
+        if (sonido != null)
+        {
+            AudioSource.PlayClipAtPoint(sonido, Camera.main.transform.position);
+        }
     }
 
     void Update()
