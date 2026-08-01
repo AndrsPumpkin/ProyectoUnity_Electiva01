@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public GameObject objeto3D;
     [Header("Audio")]
     public AudioClip sonido;
+    public AudioClip sonido2;
 
     private int currentAction = 0;
     private int currentDirection = 0;
@@ -21,6 +22,19 @@ public class GameManager : MonoBehaviour
         if (sonido != null)
         {
             AudioSource.PlayClipAtPoint(sonido, Camera.main.transform.position);
+        }
+    }
+
+    public void PlaySound2()
+    {
+        if (sonido2 != null)
+        {
+            Vector3 pos = Camera.main != null ? Camera.main.transform.position : transform.position;
+            AudioSource.PlayClipAtPoint(sonido2, pos);
+        }
+        else
+        {
+            Debug.LogWarning("sonido2 no está asignado en el GameManager.");
         }
     }
 
@@ -80,7 +94,7 @@ public void Translate(int direction)
         _ => Vector3.zero
     };
 
-    objeto3D.transform.Translate(movement * Time.deltaTime * 50f, Space.World);
+    objeto3D.transform.Translate(movement * Time.deltaTime * 80f, Space.World);
 }
 
 public void Rotate(int direction)
@@ -99,5 +113,6 @@ public void Scale(int direction)
     objeto3D.transform.localScale +=
         Vector3.one * scale * Time.deltaTime* 10f;
 }
+
 
 }
